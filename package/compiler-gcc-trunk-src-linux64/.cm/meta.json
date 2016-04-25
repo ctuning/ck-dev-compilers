@@ -1,0 +1,28 @@
+{
+  "customize": {
+    "add_m32": "no", 
+    "bugfix1": "yes", 
+    "extra_dir": "", 
+    "retarget": "no", 
+    "split_version": [
+      "trunk"
+    ], 
+    "tool_prefix_configured": "yes", 
+    "version": "trunk"
+  }, 
+  "deps": {}, 
+  "only_for_host_os_tags": [
+    "linux"
+  ], 
+  "only_for_target_os_tags": [
+    "linux"
+  ], 
+  "process_script": "process", 
+  "soft_uoa": "3a8a82fa40bf992d", 
+  "suggested_path": "gcc", 
+  "tags": [
+    "compiler", 
+    "gcc", 
+    "vtrunk"
+  ]
+}

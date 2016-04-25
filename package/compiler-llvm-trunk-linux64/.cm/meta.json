@@ -1,0 +1,26 @@
+{
+  "customize": {
+    "add_m32": "no", 
+    "extra_dir": "", 
+    "retarget": "no", 
+    "split_version": [
+      "trunk"
+    ], 
+    "tool_prefix": "", 
+    "version": "trunk"
+  }, 
+  "only_for_host_os_tags": [
+    "linux"
+  ], 
+  "only_for_target_os_tags": [
+    "linux"
+  ], 
+  "process_script": "process", 
+  "soft_uoa": "1c2eb494b8ae3bc4", 
+  "suggested_path": "llvm", 
+  "tags": [
+    "compiler", 
+    "llvm", 
+    "vtrunk"
+  ]
+}

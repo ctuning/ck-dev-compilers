@@ -1,0 +1,36 @@
+{
+  "customize": {
+    "add_to_ck_compiler_flags_obligatory": "", 
+    "extra_dir": "obj\\Debug", 
+    "retarget": "no", 
+    "split_version": [
+      "trunk"
+    ], 
+    "tool_prefix": "", 
+    "version": "trunk"
+  }, 
+  "deps": {
+    "compiler_mcl": {
+      "local": "yes", 
+      "tags": "compiler,mcl,lang-cpp"
+    }, 
+    "tool_cmake": {
+      "local": "yes", 
+      "tags": "tool,cmake"
+    }
+  }, 
+  "only_for_host_os_tags": [
+    "windows"
+  ], 
+  "only_for_target_os": [
+    "windows-32"
+  ], 
+  "process_script": "process", 
+  "soft_uoa": "1c2eb494b8ae3bc4", 
+  "suggested_path": "llvm", 
+  "tags": [
+    "compiler", 
+    "llvm", 
+    "vtrunk"
+  ]
+}
