@@ -1,0 +1,31 @@
+{
+  "customize": {
+    "add_m32": "no", 
+    "bugfix1": "no", 
+    "extra_dir": "", 
+    "retarget": "no", 
+    "split_version": [
+      5, 
+      2, 
+      0
+    ], 
+    "tool_prefix_configured": "yes", 
+    "version": "5.2.0"
+  }, 
+  "only_for_host_os_tags": [
+    "linux"
+  ], 
+  "only_for_target_os_tags": [
+    "linux"
+  ], 
+  "process_script": "process", 
+  "soft_uoa": "3a8a82fa40bf992d", 
+  "suggested_path": "gcc", 
+  "tags": [
+    "compiler", 
+    "gcc", 
+    "v5.2.0", 
+    "v5.2", 
+    "v5"
+  ]
+}
