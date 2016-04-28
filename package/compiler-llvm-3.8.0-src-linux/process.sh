@@ -15,14 +15,27 @@
 export OBJ_DIR=${INSTALL_DIR}/obj
 
 echo ""
-echo "Getting LLVM trunk from SVN"
+echo "Getting LLVM 3.8.0 from llvm.org ..."
 
-svn co http://llvm.org/svn/llvm-project/llvm/trunk ${INSTALL_DIR}/trunk/llvm
-svn co http://llvm.org/svn/llvm-project/cfe/trunk  ${INSTALL_DIR}/trunk/llvm/tools/clang
-svn co http://llvm.org/svn/llvm-project/polly/trunk  ${INSTALL_DIR}/trunk/llvm/tools/polly
+cd ${INSTALL_DIR}
+mkdir src
 
-#svn co http://llvm.org/svn/llvm-project/dragonegg/trunk  ${INSTALL_DIR}/trunk/llvm/projects/dragonegg
-#svn co http://llvm.org/svn/llvm-project/lnt/trunk  ${INSTALL_DIR}/trunk/llvm/tools/lnt
+#wget http://llvm.org/releases/3.8.0/llvm-3.8.0.src.tar.xz
+#tar xvf llvm-3.8.0.src.tar.xz
+
+cd llvm-3.8.0.src/tools
+
+#wget http://llvm.org/releases/3.8.0/cfe-3.8.0.src.tar.xz
+#tar xvf cfe-3.8.0.src.tar.xz
+mv cfe-3.8.0.src clang
+
+#wget http://llvm.org/releases/3.8.0/openmp-3.8.0.src.tar.xz
+#tar xvf openmp-3.8.0.src.tar.xz
+mv openmp-3.8.0.src openmp
+
+#wget http://llvm.org/releases/3.8.0/polly-3.8.0.src.tar.xz
+#tar xvf polly-3.8.0.src.tar.xz
+mv polly-3.8.0.src polly
 
 echo ""
 echo "Configuring ..."
@@ -30,7 +43,7 @@ echo "Configuring ..."
 mkdir $OBJ_DIR
 cd $OBJ_DIR
 
-cmake ../trunk/llvm
+cmake ../llvm-3.8.0.src
 if [ "$?" != "0" ]; then
  echo "Error: failed configuring ..."
  read -p "Press any key to continue!"

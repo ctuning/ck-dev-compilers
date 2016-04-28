@@ -1,0 +1,24 @@
+{
+  "customize": {
+    "extra_dir": "", 
+    "tool_prefix": "", 
+    "version": "3.5.2"
+  }, 
+  "end_full_path": {
+    "android": "bin/cmake", 
+    "linux": "bin/cmake"
+  }, 
+  "only_for_host_os_tags": [
+    "linux"
+  ], 
+  "only_for_target_os_tags": [
+    "linux"
+  ], 
+  "process_script": "process", 
+  "soft_uoa": "77ef5e31404d9589", 
+  "suggested_path": "cmake", 
+  "tags": [
+    "tool", 
+    "cmake"
+  ]
+}

@@ -1,4 +1,10 @@
 {
+  "deps": {
+    "tool_cmake": {
+      "local": "yes", 
+      "tags": "tool,cmake"
+    }
+  }, 
   "customize": {
     "add_m32": "no", 
     "extra_dir": "", 
@@ -14,7 +20,7 @@
   ], 
   "end_full_path": {
     "android": "bin/clang", 
-    "linux": "bin/clang", 
+    "linux": "bin/clang" 
   }, 
   "process_script": "process", 
   "soft_uoa": "1c2eb494b8ae3bc4", 
