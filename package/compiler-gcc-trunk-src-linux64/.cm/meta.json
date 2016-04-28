@@ -1,4 +1,31 @@
 {
+  "deps": {
+    "lib_cloog": {
+      "local": "yes", 
+      "sort": 50, 
+      "tags": "lib,cloog"
+    }, 
+    "lib_gmp": {
+      "local": "yes", 
+      "sort": 10, 
+      "tags": "lib,gmp"
+    }, 
+    "lib_isl": {
+      "local": "yes", 
+      "sort": 60, 
+      "tags": "lib,isl"
+    }, 
+    "lib_mpc": {
+      "local": "yes", 
+      "sort": 30, 
+      "tags": "lib,mpc"
+    }, 
+    "lib_mpfr": {
+      "local": "yes", 
+      "sort": 20, 
+      "tags": "lib,mpfr"
+    } 
+  }, 
   "customize": {
     "add_m32": "no", 
     "bugfix1": "yes", 

@@ -68,6 +68,12 @@ cd ${INSTALL_OBJ_DIR}
                              --enable-languages=c,c++,fortran \
                              --enable-shared \
                              --enable-static \
+                             --with-gmp=${CK_ENV_LIB_GMP} \
+                             --with-mpfr=${CK_ENV_LIB_MPFR} \
+                             --with-mpc=${CK_ENV_LIB_MPC} \
+                             --with-cloog=${CK_ENV_LIB_CLOOG} \
+                             --enable-cloog-backend=isl \
+                             --disable-cloog-version-check \
                              --enable-libgomp \
                              --enable-lto \
                              --enable-graphite

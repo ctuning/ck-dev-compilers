@@ -38,16 +38,17 @@ fi
 cd ${INSTALL_OBJ_DIR}
 ../${PACKAGE_NAME}/configure --prefix=${INSTALL_DIR} \
                              --enable-languages=c,fortran,c++ \
-                             --disable-multilib
-#                             --with-gmp=${CK_ENV_LIB_GMP} \
-#                             --with-mpfr=${CK_ENV_LIB_MPFR} \
-#                             --with-mpc=${CK_ENV_LIB_MPC} \
-#                             --with-cloog=${CK_ENV_LIB_CLOOG} \
-#                             --enable-cloog-backend=isl \
-#                             --disable-cloog-version-check \
-#                             --enable-libgomp \
-#                             --enable-lto \
-#                             --enable-graphite \
+                             --with-gmp=${CK_ENV_LIB_GMP} \
+                             --with-mpfr=${CK_ENV_LIB_MPFR} \
+                             --with-mpc=${CK_ENV_LIB_MPC} \
+                             --with-cloog=${CK_ENV_LIB_CLOOG} \
+                             --enable-cloog-backend=isl \
+                             --disable-cloog-version-check \
+                             --enable-shared \
+                             --enable-static \
+                             --enable-libgomp \
+                             --enable-lto \
+                             --enable-graphite
 
 # FGG had problems compiling PPL on recent machines with GCC 4.9.x
 # Hence FGG decided to use provided one (apt-get install ppl-dev)
