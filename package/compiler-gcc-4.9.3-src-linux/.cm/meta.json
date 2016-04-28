@@ -8,7 +8,7 @@
     "version": "xxx4.9.3"
   }, 
   "end_full_path": {
-    "linux": "bin/gcc" 
+    "linux": "bin/gcc"
   }, 
   "only_for_host_os_tags": [
     "linux"

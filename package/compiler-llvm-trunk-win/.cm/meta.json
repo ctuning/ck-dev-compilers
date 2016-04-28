@@ -7,17 +7,17 @@
     "tool_prefix": "", 
     "version": "trunk"
   }, 
-  "end_full_path": {
-    "android": "obj$#sep#$Release$#sep#$bin$#sep#$clang.exe", 
-    "linux": "obj/Release/bin/clang", 
-    "mingw": "obj\\Release\\bin\\clang.exe", 
-    "win": "obj\\Release\\bin\\clang.exe"
-  }, 
   "deps": {
     "tool_cmake": {
       "local": "yes", 
       "tags": "tool,cmake"
     }
+  }, 
+  "end_full_path": {
+    "android": "obj$#sep#$Release$#sep#$bin$#sep#$clang.exe", 
+    "linux": "obj/Release/bin/clang", 
+    "mingw": "obj\\Release\\bin\\clang.exe", 
+    "win": "obj\\Release\\bin\\clang.exe"
   }, 
   "only_for_host_os_tags": [
     "windows"
