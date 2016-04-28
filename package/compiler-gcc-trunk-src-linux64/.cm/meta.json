@@ -14,6 +14,9 @@
   "only_for_target_os_tags": [
     "linux"
   ], 
+  "end_full_path": {
+    "linux": "bin/gcc"
+  }, 
   "process_script": "process", 
   "soft_uoa": "3a8a82fa40bf992d", 
   "suggested_path": "gcc", 
