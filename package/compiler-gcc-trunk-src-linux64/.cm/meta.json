@@ -4,9 +4,6 @@
     "bugfix1": "yes", 
     "extra_dir": "", 
     "retarget": "no", 
-    "split_version": [
-      "trunk"
-    ], 
     "tool_prefix_configured": "yes", 
     "version": "trunk"
   }, 
@@ -22,7 +19,6 @@
   "suggested_path": "gcc", 
   "tags": [
     "compiler", 
-    "gcc", 
-    "vtrunk"
+    "gcc"
   ]
 }

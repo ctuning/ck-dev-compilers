@@ -1,0 +1,26 @@
+{
+  "customize": {
+    "add_m32": "no",
+    "bugfix1": "no",
+    "extra_dir": "",
+    "retarget": "no",
+    "tool_prefix_configured": "yes",
+    "version": ""
+  },
+  "only_for_host_os_tags": [
+    "linux"
+  ],
+  "only_for_target_os_tags": [
+    "linux"
+  ],
+  "end_full_path": {
+    "linux": "bin/gcc" 
+  }, 
+  "process_script": "process",
+  "soft_uoa": "3a8a82fa40bf992d",
+  "suggested_path": "gcc",
+  "tags": [
+    "compiler",
+    "gcc"
+  ]
+}

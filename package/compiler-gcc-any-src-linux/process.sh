@@ -12,9 +12,12 @@
 # PACKAGE_DIR
 # INSTALL_DIR
 
-export PACKAGE_NAME=gcc-4.9.3
+
+read -p "Enter gcc version (for example, 6.1.0): " gcc_ver
+
+export PACKAGE_NAME=gcc-$gcc_ver
 export PACKAGE_FILE=${PACKAGE_NAME}.tar.bz2
-export PACKAGE_URL=ftp://ftp.fu-berlin.de/unix/languages/gcc/releases/gcc-4.9.3/${PACKAGE_FILE}
+export PACKAGE_URL=ftp://gd.tuwien.ac.at/gnu/gcc/releases/${PACKAGE_NAME}/${PACKAGE_FILE}
 
 cd ${INSTALL_DIR}
 

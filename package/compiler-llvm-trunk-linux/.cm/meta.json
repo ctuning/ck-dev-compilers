@@ -3,9 +3,6 @@
     "add_m32": "no", 
     "extra_dir": "", 
     "retarget": "no", 
-    "split_version": [
-      "trunk"
-    ], 
     "tool_prefix": "", 
     "version": "trunk"
   }, 
@@ -20,7 +17,6 @@
   "suggested_path": "llvm", 
   "tags": [
     "compiler", 
-    "llvm", 
-    "vtrunk"
+    "llvm"
   ]
 }
