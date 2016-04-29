@@ -34,7 +34,6 @@
     "tool_prefix_configured": "yes", 
     "version": "trunk"
   }, 
-  "deps": {}, 
   "only_for_host_os_tags": [
     "linux"
   ], 

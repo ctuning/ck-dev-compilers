@@ -35,7 +35,7 @@ if [ ! -f ${PACKAGE_FILE} ]; then
  echo "Downloading archive from ${PACKAGE_URL} ..."
  echo ""
 
- wget ${PACKAGE_URL}
+wget ${PACKAGE_URL}
 
  if [ "${?}" != "0" ] ; then
   echo "Error: Downloading failed in $PWD!" 
@@ -59,6 +59,17 @@ fi
 export INSTALL_OBJ_DIR=${INSTALL_DIR}/obj
 mkdir $INSTALL_OBJ_DIR
 
+export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
+
+#if ["$LIBRARY_PATH" -eq ""]
+#then
+# export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
+#else
+# #trick to avoid current path in lib
+# export LIBRARY_PATH=""
+# /usr/lib/x86_64-linux-gnu:${LIBRARY_PATH}/usr/lib/x86_64-linux-gnu
+#fi
+
 #
 echo ""
 echo "Configuring ..."
@@ -66,11 +77,13 @@ echo "Configuring ..."
 cd ${INSTALL_OBJ_DIR}
 ../${PACKAGE_NAME}/configure --prefix=${INSTALL_DIR} \
                              --enable-languages=c,c++,fortran \
+                             --disable-multilib \
                              --enable-shared \
                              --enable-static \
                              --with-gmp=${CK_ENV_LIB_GMP} \
                              --with-mpfr=${CK_ENV_LIB_MPFR} \
                              --with-mpc=${CK_ENV_LIB_MPC} \
+                             --with-isl=${CK_ENV_LIB_ISL} \
                              --with-cloog=${CK_ENV_LIB_CLOOG} \
                              --enable-cloog-backend=isl \
                              --disable-cloog-version-check \

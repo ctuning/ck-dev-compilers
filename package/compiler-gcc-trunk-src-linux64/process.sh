@@ -28,19 +28,25 @@ mkdir $INSTALL_OBJ_DIR
 echo ""
 echo "Configuring ..."
 
-if ["$LIBRARY_PATH" -eq ""]
-then
- export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
-else
- export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LIBRARY_PATH
-fi
+export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
+
+#if ["$LIBRARY_PATH" -eq ""]
+#then
+# export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
+#else
+# #trick to avoid current path in lib
+# export LIBRARY_PATH=""
+# #/usr/lib/x86_64-linux-gnu:${LIBRARY_PATH}/usr/lib/x86_64-linux-gnu
+#fi
 
 cd ${INSTALL_OBJ_DIR}
 ../${PACKAGE_NAME}/configure --prefix=${INSTALL_DIR} \
                              --enable-languages=c,fortran,c++ \
+                             --disable-multilib \
                              --with-gmp=${CK_ENV_LIB_GMP} \
                              --with-mpfr=${CK_ENV_LIB_MPFR} \
                              --with-mpc=${CK_ENV_LIB_MPC} \
+                             --with-isl=${CK_ENV_LIB_ISL} \
                              --with-cloog=${CK_ENV_LIB_CLOOG} \
                              --enable-cloog-backend=isl \
                              --disable-cloog-version-check \
