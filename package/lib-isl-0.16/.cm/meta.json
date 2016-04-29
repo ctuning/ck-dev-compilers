@@ -4,8 +4,9 @@
     "version": "0.16"
   }, 
   "deps": {
-    "lib_gmp": {
+    "lib-gmp": {
       "local": "yes", 
+      "name": "GMP library", 
       "tags": "lib,gmp"
     }
   }, 

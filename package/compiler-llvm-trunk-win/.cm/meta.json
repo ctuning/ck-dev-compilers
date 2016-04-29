@@ -8,8 +8,9 @@
     "version": "trunk"
   }, 
   "deps": {
-    "tool_cmake": {
+    "tool-cmake": {
       "local": "yes", 
+      "name": "cmake", 
       "tags": "tool,cmake"
     }
   }, 

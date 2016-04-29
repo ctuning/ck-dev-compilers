@@ -1,10 +1,4 @@
 {
-  "deps": {
-    "tool_cmake": {
-      "local": "yes", 
-      "tags": "tool,cmake"
-    }
-  }, 
   "customize": {
     "add_m32": "no", 
     "extra_dir": "", 
@@ -12,16 +6,23 @@
     "tool_prefix": "", 
     "version": "trunk"
   }, 
+  "deps": {
+    "tool-cmake": {
+      "local": "yes", 
+      "name": "cmake", 
+      "tags": "tool,cmake"
+    }
+  }, 
+  "end_full_path": {
+    "android": "bin/clang", 
+    "linux": "bin/clang"
+  }, 
   "only_for_host_os_tags": [
     "linux"
   ], 
   "only_for_target_os_tags": [
     "linux"
   ], 
-  "end_full_path": {
-    "android": "bin/clang", 
-    "linux": "bin/clang" 
-  }, 
   "process_script": "process", 
   "soft_uoa": "1c2eb494b8ae3bc4", 
   "suggested_path": "llvm", 

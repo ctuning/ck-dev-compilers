@@ -1,31 +1,4 @@
 {
-  "deps": {
-    "lib_cloog": {
-      "local": "yes", 
-      "sort": 50, 
-      "tags": "lib,cloog"
-    }, 
-    "lib_gmp": {
-      "local": "yes", 
-      "sort": 10, 
-      "tags": "lib,gmp"
-    }, 
-    "lib_isl": {
-      "local": "yes", 
-      "sort": 60, 
-      "tags": "lib,isl"
-    }, 
-    "lib_mpc": {
-      "local": "yes", 
-      "sort": 30, 
-      "tags": "lib,mpc"
-    }, 
-    "lib_mpfr": {
-      "local": "yes", 
-      "sort": 20, 
-      "tags": "lib,mpfr"
-    } 
-  }, 
   "customize": {
     "add_m32": "no", 
     "bugfix1": "yes", 
@@ -34,15 +7,47 @@
     "tool_prefix_configured": "yes", 
     "version": "trunk"
   }, 
+  "deps": {
+    "lib-cloog": {
+      "local": "yes", 
+      "name": "Cloog library", 
+      "sort": 50, 
+      "tags": "lib,cloog"
+    }, 
+    "lib-gmp": {
+      "local": "yes", 
+      "name": "GMP library", 
+      "sort": 10, 
+      "tags": "lib,gmp"
+    }, 
+    "lib-isl": {
+      "local": "yes", 
+      "name": "ISL library", 
+      "sort": 60, 
+      "tags": "lib,isl"
+    }, 
+    "lib-mpc": {
+      "local": "yes", 
+      "name": "MPC library", 
+      "sort": 30, 
+      "tags": "lib,mpc"
+    }, 
+    "lib-mpfr": {
+      "local": "yes", 
+      "name": "MPFR library", 
+      "sort": 20, 
+      "tags": "lib,mpfr"
+    }
+  }, 
+  "end_full_path": {
+    "linux": "bin/gcc"
+  }, 
   "only_for_host_os_tags": [
     "linux"
   ], 
   "only_for_target_os_tags": [
     "linux"
   ], 
-  "end_full_path": {
-    "linux": "bin/gcc"
-  }, 
   "process_script": "process", 
   "soft_uoa": "3a8a82fa40bf992d", 
   "suggested_path": "gcc", 
