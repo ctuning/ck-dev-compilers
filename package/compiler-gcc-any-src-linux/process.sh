@@ -15,6 +15,11 @@
 
 read -p "Enter gcc version (for example, 6.1.0): " gcc_ver
 
+if ["$gcc_ver" -eq ""]
+then
+ export gcc_ver=6.1.0
+fi
+
 export PACKAGE_NAME=gcc-$gcc_ver
 export PACKAGE_FILE=${PACKAGE_NAME}.tar.bz2
 export PACKAGE_URL=ftp://gd.tuwien.ac.at/gnu/gcc/releases/${PACKAGE_NAME}/${PACKAGE_FILE}
