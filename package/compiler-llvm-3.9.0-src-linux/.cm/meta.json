@@ -1,0 +1,41 @@
+{
+  "customize": {
+    "add_m32": "no", 
+    "install_env": {
+      "PACKAGE_URL": "http://llvm.org/releases",
+      "PACKAGE_VERSION": "3.9.0"
+    },
+    "extra_dir": "", 
+    "retarget": "no", 
+    "tool_prefix": "", 
+    "version": ""
+  }, 
+  "deps": {
+    "tool-cmake": {
+      "local": "yes", 
+      "name": "cmake", 
+      "tags": "tool,cmake"
+    }
+  }, 
+  "end_full_path": {
+    "android": "bin/clang", 
+    "linux": "bin/clang"
+  }, 
+  "only_for_host_os_tags": [
+    "linux"
+  ], 
+  "only_for_target_os_tags": [
+    "linux"
+  ], 
+  "process_script": "process", 
+  "need_cpu_info": "yes", 
+  "soft_uoa": "1c2eb494b8ae3bc4", 
+  "suggested_path": "llvm-src-3.9.0", 
+  "tags": [
+    "compiler", 
+    "llvm",
+    "v3.9.0",
+    "v3.9",
+    "v3"
+  ]
+}
