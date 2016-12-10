@@ -23,6 +23,10 @@
       "tags": "lib,mpfr"
     }
   }, 
+  "end_full_path": {
+    "linux": "lib/libppl.a", 
+    "mingw": "lib\\libppl.a"
+  }, 
   "only_for_host_os_tags": [
     "linux"
   ], 
