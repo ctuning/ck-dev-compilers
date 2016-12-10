@@ -17,9 +17,11 @@ read -p "Enter gcc version (for example, 6.1.0): " gcc_ver
 
 export PACKAGE_NAME=gcc-$gcc_ver
 export PACKAGE_FILE=${PACKAGE_NAME}.tar.bz2
-export PACKAGE_URL=ftp://gd.tuwien.ac.at/gnu/gcc/releases/${PACKAGE_NAME}/${PACKAGE_FILE}
+export PACKAGE_URL=http://fr.mirror.babylon.network/gcc/releases/${PACKAGE_NAME}/${PACKAGE_FILE}
 
 cd ${INSTALL_DIR}
+
+rm -f ${PACKAGE_FILE}
 
 echo ""
 echo "In the next step, we will download archive from ${PACKAGE_URL} ..."
@@ -57,8 +59,10 @@ if [ "${?}" != "0" ] ; then
 fi
 
 export INSTALL_OBJ_DIR=${INSTALL_DIR}/obj
+rm -rf ${INSTALL_OBJ_DIR}
 mkdir $INSTALL_OBJ_DIR
 
+# TBD: need to check that X86 and not ARM ...
 export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
 
 #if ["$LIBRARY_PATH" -eq ""]
@@ -78,17 +82,10 @@ cd ${INSTALL_OBJ_DIR}
 ../${PACKAGE_NAME}/configure --prefix=${INSTALL_DIR} \
                              --enable-languages=c,c++,fortran \
                              --disable-multilib \
-                             --enable-shared \
-                             --enable-static \
-                             --with-gmp=${CK_ENV_LIB_GMP} \
-                             --with-mpfr=${CK_ENV_LIB_MPFR} \
-                             --with-mpc=${CK_ENV_LIB_MPC} \
-                             --with-isl=${CK_ENV_LIB_ISL} \
-                             --with-cloog=${CK_ENV_LIB_CLOOG} \
-                             --enable-cloog-backend=isl \
-                             --disable-cloog-version-check \
                              --enable-libgomp \
                              --enable-lto \
+                             --enable-shared \
+                             --enable-static \
                              --enable-graphite
 
 if [ "${?}" != "0" ] ; then
@@ -101,7 +98,7 @@ echo ""
 echo "Building ..."
 echo ""
 cd ${INSTALL_OBJ_DIR}
-make -j4
+make -j1
 if [ "${?}" != "0" ] ; then
   echo "Error: Compilation failed in $PWD!" 
   exit 1
