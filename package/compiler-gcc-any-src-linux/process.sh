@@ -12,15 +12,7 @@
 # PACKAGE_DIR
 # INSTALL_DIR
 
-
-read -p "Enter gcc version (for example, 6.1.0): " gcc_ver
-
-if ["$gcc_ver" -eq ""]
-then
- export gcc_ver=6.1.0
-fi
-
-export PACKAGE_NAME=gcc-$gcc_ver
+export PACKAGE_NAME=gcc-${PACKAGE_VERSION}
 export PACKAGE_FILE=${PACKAGE_NAME}.tar.bz2
 export PACKAGE_URL=ftp://gd.tuwien.ac.at/gnu/gcc/releases/${PACKAGE_NAME}/${PACKAGE_FILE}
 
@@ -64,23 +56,26 @@ fi
 export INSTALL_OBJ_DIR=${INSTALL_DIR}/obj
 mkdir $INSTALL_OBJ_DIR
 
-export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
-
-#if ["$LIBRARY_PATH" -eq ""]
-#then
-# export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
-#else
-# #trick to avoid current path in lib
-# export LIBRARY_PATH=""
-# /usr/lib/x86_64-linux-gnu:${LIBRARY_PATH}/usr/lib/x86_64-linux-gnu
-#fi
+MACHINE=$(uname -m)
+EXTRA_CFG=""
+if [ "${MACHINE}" == "armv7l" ]; then
+  EXTRA_CFG="--with-cpu=cortex-a53 --with-fpu=neon-fp-armv8 --with-float=hard --build=arm-linux-gnueabihf --host=arm-linux-gnueabihf --target=arm-linux-gnueabihf"
+elif [ "${MACHINE}" == "aarch64" ]; then
+  EXTRA_CFG="--with-cpu=cortex-a53 --with-fpu=neon-fp-armv8 --with-float=hard --build=arm-linux-gnueabihf --host=arm-linux-gnueabihf --target=arm-linux-gnueabihf"
+else:
+  if ["$LIBRARY_PATH" -eq ""] ; then
+    export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
+  else
+    export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:${LIBRARY_PATH}
+  fi
+fi
 
 #
 echo ""
 echo "Configuring ..."
 
 cd ${INSTALL_OBJ_DIR}
-../${PACKAGE_NAME}/configure --prefix=${INSTALL_DIR} \
+../${PACKAGE_NAME}/configure --prefix=${INSTALL_DIR} ${EXTRA_CFG}\
                              --enable-languages=c,c++,fortran \
                              --disable-multilib \
                              --enable-shared \

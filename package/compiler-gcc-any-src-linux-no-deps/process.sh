@@ -12,10 +12,7 @@
 # PACKAGE_DIR
 # INSTALL_DIR
 
-
-read -p "Enter gcc version (for example, 6.1.0): " gcc_ver
-
-export PACKAGE_NAME=gcc-$gcc_ver
+export PACKAGE_NAME=gcc-${PACKAGE_VERSION}
 export PACKAGE_FILE=${PACKAGE_NAME}.tar.bz2
 export PACKAGE_URL=http://fr.mirror.babylon.network/gcc/releases/${PACKAGE_NAME}/${PACKAGE_FILE}
 
@@ -45,6 +42,7 @@ wget ${PACKAGE_URL}
  fi
 fi
 
+#########################################################
 echo ""
 echo "Extracting archive ..."
 echo ""
@@ -58,28 +56,31 @@ if [ "${?}" != "0" ] ; then
  exit 1
 fi
 
+#########################################################
 export INSTALL_OBJ_DIR=${INSTALL_DIR}/obj
 rm -rf ${INSTALL_OBJ_DIR}
 mkdir $INSTALL_OBJ_DIR
 
-# TBD: need to check that X86 and not ARM ...
-export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
-
-#if ["$LIBRARY_PATH" -eq ""]
-#then
-# export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
-#else
-# #trick to avoid current path in lib
-# export LIBRARY_PATH=""
-# /usr/lib/x86_64-linux-gnu:${LIBRARY_PATH}/usr/lib/x86_64-linux-gnu
-#fi
+MACHINE=$(uname -m)
+EXTRA_CFG=""
+if [ "${MACHINE}" == "armv7l" ]; then
+  EXTRA_CFG="--with-cpu=cortex-a53 --with-fpu=neon-fp-armv8 --with-float=hard --build=arm-linux-gnueabihf --host=arm-linux-gnueabihf --target=arm-linux-gnueabihf"
+elif [ "${MACHINE}" == "aarch64" ]; then
+  EXTRA_CFG="--with-cpu=cortex-a53 --with-fpu=neon-fp-armv8 --with-float=hard --build=arm-linux-gnueabihf --host=arm-linux-gnueabihf --target=arm-linux-gnueabihf"
+else:
+  if ["$LIBRARY_PATH" -eq ""] ; then
+    export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
+  else
+    export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:${LIBRARY_PATH}
+  fi
+fi
 
 #
 echo ""
 echo "Configuring ..."
 
 cd ${INSTALL_OBJ_DIR}
-../${PACKAGE_NAME}/configure --prefix=${INSTALL_DIR} \
+../${PACKAGE_NAME}/configure --prefix=${INSTALL_DIR} ${EXTRA_CFG}\
                              --enable-languages=c,c++,fortran \
                              --disable-multilib \
                              --enable-libgomp \
