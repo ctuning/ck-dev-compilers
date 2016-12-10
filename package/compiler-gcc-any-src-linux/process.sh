@@ -14,8 +14,7 @@
 
 export PACKAGE_NAME=gcc-${PACKAGE_VERSION}
 export PACKAGE_FILE=${PACKAGE_NAME}.tar.bz2
-export PACKAGE_URL=ftp://gd.tuwien.ac.at/gnu/gcc/releases/${PACKAGE_NAME}/${PACKAGE_FILE}
-
+export PACKAGE_URL=http://fr.mirror.babylon.network/gcc/releases/${PACKAGE_NAME}/${PACKAGE_FILE}
 cd ${INSTALL_DIR}
 
 echo ""
