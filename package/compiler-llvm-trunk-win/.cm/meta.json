@@ -26,6 +26,7 @@
   "only_for_target_os_tags": [
     "windows"
   ], 
+  "need_cpu_info":"yes",
   "process_script": "process", 
   "soft_uoa": "1c2eb494b8ae3bc4", 
   "suggested_path": "llvm", 

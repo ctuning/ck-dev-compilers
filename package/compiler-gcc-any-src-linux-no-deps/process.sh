@@ -12,6 +12,12 @@
 # PACKAGE_DIR
 # INSTALL_DIR
 
+# Fix number of processes
+NP=${CK_HOST_CPU_NUMBER_OF_PROCESSORS}
+if [ "${PARALLEL_BUILDS}" != "" ] ; then
+  NP=${PARALLEL_BUILDS}
+fi
+
 export PACKAGE_NAME=gcc-${PACKAGE_VERSION}
 export PACKAGE_FILE=${PACKAGE_NAME}.tar.bz2
 export PACKAGE_URL=http://fr.mirror.babylon.network/gcc/releases/${PACKAGE_NAME}/${PACKAGE_FILE}
@@ -61,6 +67,9 @@ export INSTALL_OBJ_DIR=${INSTALL_DIR}/obj
 rm -rf ${INSTALL_OBJ_DIR}
 mkdir $INSTALL_OBJ_DIR
 
+# Glitch with LIBRARY_PATH - has to clean it here
+export LIBRARY_PATH=""
+
 MACHINE=$(uname -m)
 EXTRA_CFG=""
 if [ "${MACHINE}" == "armv7l" ]; then
@@ -68,11 +77,7 @@ if [ "${MACHINE}" == "armv7l" ]; then
 elif [ "${MACHINE}" == "aarch64" ]; then
   EXTRA_CFG="--with-cpu=cortex-a53 --with-fpu=neon-fp-armv8 --with-float=hard --build=arm-linux-gnueabihf --host=arm-linux-gnueabihf --target=arm-linux-gnueabihf"
 else:
-  if ["$LIBRARY_PATH" -eq ""] ; then
-    export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
-  else
-    export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:${LIBRARY_PATH}
-  fi
+  export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
 fi
 
 #
@@ -99,7 +104,7 @@ echo ""
 echo "Building ..."
 echo ""
 cd ${INSTALL_OBJ_DIR}
-make -j1
+make -j$NP
 if [ "${?}" != "0" ] ; then
   echo "Error: Compilation failed in $PWD!" 
   exit 1

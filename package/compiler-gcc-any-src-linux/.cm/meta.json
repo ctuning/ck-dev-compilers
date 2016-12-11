@@ -49,6 +49,7 @@
   "only_for_target_os_tags": [
     "linux"
   ], 
+  "need_cpu_info":"yes",
   "process_script": "process", 
   "soft_uoa": "3a8a82fa40bf992d", 
   "suggested_path": "gcc", 

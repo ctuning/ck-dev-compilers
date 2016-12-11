@@ -12,6 +12,12 @@
 # PACKAGE_DIR
 # INSTALL_DIR
 
+# Fix number of processes
+NP=${CK_HOST_CPU_NUMBER_OF_PROCESSORS}
+if [ "${PARALLEL_BUILDS}" != "" ] ; then
+  NP=${PARALLEL_BUILDS}
+fi
+
 export PACKAGE_NAME=gcc-${PACKAGE_VERSION}
 export PACKAGE_FILE=${PACKAGE_NAME}.tar.bz2
 export PACKAGE_URL=http://fr.mirror.babylon.network/gcc/releases/${PACKAGE_NAME}/${PACKAGE_FILE}
@@ -31,7 +37,8 @@ if [ ! -f ${PACKAGE_FILE} ]; then
  echo "Downloading archive from ${PACKAGE_URL} ..."
  echo ""
 
-wget ${PACKAGE_URL}
+ rm -f ${PACKAGE_FILE}
+ wget ${PACKAGE_URL}
 
  if [ "${?}" != "0" ] ; then
   echo "Error: Downloading failed in $PWD!" 
@@ -53,42 +60,39 @@ if [ "${?}" != "0" ] ; then
 fi
 
 export INSTALL_OBJ_DIR=${INSTALL_DIR}/obj
+rm -rf ${INSTALL_OBJ_DIR}
 mkdir $INSTALL_OBJ_DIR
+
+# Glitch with LIBRARY_PATH - has to clean it here
+export LIBRARY_PATH=""
 
 MACHINE=$(uname -m)
 EXTRA_CFG=""
+EXTRA_CFG1="--disable-multilib --enable-shared --enable-static --enable-cloog-backend=isl --disable-cloog-version-check --enable-libgomp --enable-lto --enable-graphite"
+
 if [ "${MACHINE}" == "armv7l" ]; then
-  EXTRA_CFG="--with-cpu=cortex-a53 --with-fpu=neon-fp-armv8 --with-float=hard --build=arm-linux-gnueabihf --host=arm-linux-gnueabihf --target=arm-linux-gnueabihf"
+  # I didn't manage to compile it properly on RPi - need to fix it ...
+  EXTRA_CFG="--disable-libmudflap --enable-libgomp --disable-bootstrap"
+  EXTRA_CFG1=""
 elif [ "${MACHINE}" == "aarch64" ]; then
   EXTRA_CFG="--with-cpu=cortex-a53 --with-fpu=neon-fp-armv8 --with-float=hard --build=arm-linux-gnueabihf --host=arm-linux-gnueabihf --target=arm-linux-gnueabihf"
+  EXTRA_CFG1=""
 else:
-  if ["$LIBRARY_PATH" -eq ""] ; then
-    export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
-  else
-    export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:${LIBRARY_PATH}
-  fi
+  export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
 fi
 
-#
+##################################################################################
 echo ""
 echo "Configuring ..."
 
 cd ${INSTALL_OBJ_DIR}
 ../${PACKAGE_NAME}/configure --prefix=${INSTALL_DIR} ${EXTRA_CFG}\
-                             --enable-languages=c,c++,fortran \
-                             --disable-multilib \
-                             --enable-shared \
-                             --enable-static \
+                             --enable-languages=c ${EXTRA_CFG1} \
                              --with-gmp=${CK_ENV_LIB_GMP} \
                              --with-mpfr=${CK_ENV_LIB_MPFR} \
                              --with-mpc=${CK_ENV_LIB_MPC} \
                              --with-isl=${CK_ENV_LIB_ISL} \
-                             --with-cloog=${CK_ENV_LIB_CLOOG} \
-                             --enable-cloog-backend=isl \
-                             --disable-cloog-version-check \
-                             --enable-libgomp \
-                             --enable-lto \
-                             --enable-graphite
+                             --with-cloog=${CK_ENV_LIB_CLOOG}
 
 if [ "${?}" != "0" ] ; then
   echo "Error: Configuration failed in $PWD!"
@@ -100,7 +104,7 @@ echo ""
 echo "Building ..."
 echo ""
 cd ${INSTALL_OBJ_DIR}
-make -j4
+make -j$NP
 if [ "${?}" != "0" ] ; then
   echo "Error: Compilation failed in $PWD!" 
   exit 1
