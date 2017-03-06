@@ -1,4 +1,5 @@
 {
+  "check_exit_status": "yes", 
   "customize": {
     "add_m32": "no", 
     "extra_dir": "", 

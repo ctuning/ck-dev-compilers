@@ -37,7 +37,6 @@ if [ "$?" != "0" ]; then
  exit $?
 fi
 
-
 echo ""
 echo "Building ..."
 
