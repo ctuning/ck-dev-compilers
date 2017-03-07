@@ -3,12 +3,12 @@ CK repository to test, benchmark and tune compilers from trunk (LLVM, GCC, etc)
 
 Prerequisites
 =============
-* Collective Knowledge Framework: http://github.com/ctuning/ck
+* [Collective Knowledge Framework](http://github.com/ctuning/ck)
 
 Authors
 =======
 
-* Grigori Fursin, cTuning foundation (France) / dividiti (UK)
+* [Grigori Fursin](http://fursin.net/research.html), cTuning foundation (France) / dividiti (UK)
 
 License
 =======
@@ -46,3 +46,50 @@ It is also possible to rebuild various deps for GCC via CK (such as GMP, MPFR, P
  $ ck install package:compiler-gcc-any-src-linux
 ```
 
+Publications
+============
+
+```
+@inproceedings{ck-date16,
+    title = {{Collective Knowledge}: towards {R\&D} sustainability},
+    author = {Fursin, Grigori and Lokhmotov, Anton and Plowman, Ed},
+    booktitle = {Proceedings of the Conference on Design, Automation and Test in Europe (DATE'16)},
+    year = {2016},
+    month = {March},
+    url = {https://www.researchgate.net/publication/304010295_Collective_Knowledge_Towards_RD_Sustainability}
+}
+
+@article{fursin:hal-01054763,
+    hal_id = {hal-01054763},
+    url = {http://hal.inria.fr/hal-01054763},
+    title = {{Collective Mind}: Towards practical and collaborative auto-tuning},
+    author = {Fursin, Grigori and Miceli, Renato and Lokhmotov, Anton and Gerndt, Michael and Baboulin, Marc and Malony, Allen, D. and Chamski, Zbigniew and Novillo, Diego and Vento, Davide Del},
+    abstract = {{Empirical auto-tuning and machine learning techniques have been showing high potential to improve execution time, power consumption, code size, reliability and other important metrics of various applications for more than two decades. However, they are still far from widespread production use due to lack of native support for auto-tuning in an ever changing and complex software and hardware stack, large and multi-dimensional optimization spaces, excessively long exploration times, and lack of unified mechanisms for preserving and sharing of optimization knowledge and research material. We present a possible collaborative approach to solve above problems using Collective Mind knowledge management system. In contrast with previous cTuning framework, this modular infrastructure allows to preserve and share through the Internet the whole auto-tuning setups with all related artifacts and their software and hardware dependencies besides just performance data. It also allows to gradually structure, systematize and describe all available research material including tools, benchmarks, data sets, search strategies and machine learning models. Researchers can take advantage of shared components and data with extensible meta-description to quickly and collaboratively validate and improve existing auto-tuning and benchmarking techniques or prototype new ones. The community can now gradually learn and improve complex behavior of all existing computer systems while exposing behavior anomalies or model mispredictions to an interdisciplinary community in a reproducible way for further analysis. We present several practical, collaborative and model-driven auto-tuning scenarios. We also decided to release all material at http://c-mind.org/repo to set up an example for a collaborative and reproducible research as well as our new publication model in computer engineering where experimental results are continuously shared and validated by the community.}},
+    keywords = {High performance computing; systematic auto-tuning; systematic benchmarking; big data driven optimization; modeling of computer behavior; performance prediction; predictive analytics; feature selection; collaborative knowledge management; NoSQL repository; code and data sharing; specification sharing; collaborative experimentation; machine learning; data mining; multi-objective optimization; model driven optimization; agile development; plugin-based auto-tuning; performance tracking buildbot; performance regression buildbot; performance tuning buildbot; open access publication model; collective intelligence; reproducible research},
+    language = {Anglais},
+    affiliation = {POSTALE - INRIA Saclay - Ile de France , cTuning foundation , University of Rennes 1 , ICHEC , ARM [Cambridge] , Technical University of Munich - TUM , Computer Science Department [Oregon] , Infrasoft IT Solutions , Google Inc , National Center for Atmospheric Research - NCAR},
+    booktitle = {{Automatic Application Tuning for HPC Architectures}},
+    publisher = {IOS Press},
+    pages = {309-329},
+    journal = {Scientific Programming},
+    volume = {22},
+    number = {4 },
+    audience = {internationale },
+    doi = {10.3233/SPR-140396 },
+    year = {2014},
+    month = Jul,
+    pdf = {http://hal.inria.fr/hal-01054763/PDF/paper.pdf}
+}
+
+```
+
+The concepts have been described in the following publications:
+
+* http://tinyurl.com/zyupd5v (DATE'16)
+* http://arxiv.org/abs/1506.06256 (CPC'15)
+* http://hal.inria.fr/hal-01054763 (Journal of Scientific Programming'14)
+* https://hal.inria.fr/inria-00436029 (GCC Summit'09)
+
+Public discussions
+==================
+* [CK mailing list](http://groups.google.com/group/collective-knowledge)
