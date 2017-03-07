@@ -1,5 +1,5 @@
-CK repository to test, benchmark and tune compilers from trunk (LLVM, GCC, etc)
-===============================================================================
+This repository contains CK packages to build, test, benchmark and tune development versions of various compilers (LLVM, GCC, etc)
+across different platforms (Linux, MacOS, Windows).
 
 Prerequisites
 =============
@@ -93,3 +93,5 @@ The concepts have been described in the following publications:
 Public discussions
 ==================
 * [CK mailing list](http://groups.google.com/group/collective-knowledge)
+
+![logo](https://github.com/ctuning/ck-guide-images/blob/master/logo-validated-by-the-community-simple.png)
