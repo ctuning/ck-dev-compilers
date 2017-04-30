@@ -45,13 +45,22 @@ It is possible to build GCC trunk version from sources while reusing native Linu
  $ ck install package:compiler-gcc-any-src-linux-no-deps
 ```
 
+However, you may need to install various dependencies such as 
+```
+ $ sudo apt-get install texinfo build-essential libgmp-dev libmpfr-dev libisl-dev libcloog-isl-dev libmpc-dev
+```
+
+On x86(_64) you may need to install extra packages:
+```
+ $ sudo apt-get install  g++-multilib libc6-dev-i386
+```
+
 If you have some errors when building GCC >=6.x compilers with older GCC 5.x compiler, while gcc-6 is also available,
 you can use the following command line to fix them:
 
 ```
  $ export CC=gcc-6 ; export CXX=g++-6 ; ck install package:compiler-gcc-any-src-linux-no-deps
 ```
-
 
 It is also possible to rebuild various deps for GCC via CK (such as GMP, MPFR, PPL, MPC, etc) and then install GCC via
 ```
