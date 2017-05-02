@@ -97,8 +97,8 @@ mkdir $INSTALL_OBJ_DIR
 echo ""
 echo "Configuring ..."
 
-if [ "${GCC_ENABLE_LANGUAGES}" == "" ] ;
-  export GCC_ENABLE_LANGUAGES=c,c++,fortran
+if [ "${GCC_ENABLE_LANGUAGES}" == "" ] ; then
+  export GCC_ENABLE_LANGUAGES=c
 fi
 
 export CFLAGS="${GCC_COMPILE_CFLAGS}"
