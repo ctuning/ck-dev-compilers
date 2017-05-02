@@ -20,7 +20,7 @@ fi
 
 export PACKAGE_NAME=gcc-${PACKAGE_VERSION}
 export PACKAGE_FILE=${PACKAGE_NAME}.tar.bz2
-export PACKAGE_URL=http://fr.mirror.babylon.network/gcc/releases/${PACKAGE_NAME}/${PACKAGE_FILE}
+export PACKAGE_URL=ftp://gcc.gnu.org/pub/gcc/snapshots/${PACKAGE_VERSION}/${PACKAGE_FILE}
 
 cd ${INSTALL_DIR}
 
@@ -32,15 +32,13 @@ echo "However, if you already have it, place it inside this directory:"
 echo "${INSTALL_DIR}"
 echo ""
 
-read -p "Press [Enter] to continue ..."
-
 if [ ! -f ${PACKAGE_FILE} ]; then
 
  echo ""
  echo "Downloading archive from ${PACKAGE_URL} ..."
  echo ""
 
-wget ${PACKAGE_URL}
+ wget ${PACKAGE_URL}
 
  if [ "${?}" != "0" ] ; then
   echo "Error: Downloading failed in $PWD!" 
@@ -62,37 +60,58 @@ if [ "${?}" != "0" ] ; then
  exit 1
 fi
 
+# GCC version
+GCC_VER=`gcc -dumpversion`
+
+# MACHINE 
+MACHINE=`gcc -dumpmachine`
+
+# Set special vars
+if ["$LD_LIBRARY_PATH" -eq ""]
+then
+ export LD_LIBRARY_PATH=/usr/lib/${MACHINE}:/usr/lib/gcc/${MACHINE}/${GCC_VER}
+else
+ LD_LIBRARY_PATH1=${LD_LIBRARY_PATH}
+ if [ "${LD_LIBRARY_PATH: -1}" == ":" ] ; then
+   LD_LIBRARY_PATH1=${LD_LIBRARY_PATH: : -1}
+ fi
+ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH1:/usr/lib/${MACHINE}:/usr/lib/gcc/${MACHINE}/${GCC_VER}
+fi
+
+if ["$LIBRARY_PATH" -eq ""]
+then
+ export LIBRARY_PATH=/usr/lib/${MACHINE}:/usr/lib/gcc/${MACHINE}/${GCC_VER}
+else
+ LIBRARY_PATH1=${LIBRARY_PATH}
+ if [ "${LIBRARY_PATH: -1}" == ":" ] ; then
+   LIBRARY_PATH1=${LIBRARY_PATH: : -1}
+ fi
+ export LIBRARY_PATH=$LIBRARY_PATH1:/usr/lib/${MACHINE}:/usr/lib/gcc/${MACHINE}/${GCC_VER}
+fi
+
 #########################################################
 export INSTALL_OBJ_DIR=${INSTALL_DIR}/obj
 rm -rf ${INSTALL_OBJ_DIR}
 mkdir $INSTALL_OBJ_DIR
 
-# Glitch with LIBRARY_PATH - has to clean it here
-export LIBRARY_PATH=""
-
-MACHINE=$(uname -m)
-EXTRA_CFG=""
-if [ "${MACHINE}" == "armv7l" ]; then
-  EXTRA_CFG="--with-cpu=cortex-a53 --with-fpu=neon-fp-armv8 --with-float=hard --build=arm-linux-gnueabihf --host=arm-linux-gnueabihf --target=arm-linux-gnueabihf"
-elif [ "${MACHINE}" == "aarch64" ]; then
-  EXTRA_CFG="--with-cpu=cortex-a53 --with-fpu=neon-fp-armv8 --with-float=hard --build=arm-linux-gnueabihf --host=arm-linux-gnueabihf --target=arm-linux-gnueabihf"
-else:
-  export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
-fi
-
-#
 echo ""
 echo "Configuring ..."
 
+if [ "${GCC_ENABLE_LANGUAGES}" == "" ] ;
+  export GCC_ENABLE_LANGUAGES=c,c++,fortran
+fi
+
+export CFLAGS="${GCC_COMPILE_CFLAGS}"
+
+MACHINE=$(uname -m)
+EXTRA_CFG=""
+if [ "${MACHINE}" == "aarch64" ] ; then
+ EXTRA_CFG="--with-cpu=cortex-a53 --with-fpu=neon-fp-armv8 --with-float=hard  --build=arm-linux-gnueabihf --host=arm-linux-gnueabihf --target=arm-linux-gnueabihf"
+fi
+
 cd ${INSTALL_OBJ_DIR}
-../${PACKAGE_NAME}/configure --prefix=${INSTALL_DIR} ${EXTRA_CFG}\
-                             --enable-languages=c,c++,fortran \
-                             --disable-multilib \
-                             --enable-libgomp \
-                             --enable-lto \
-                             --enable-shared \
-                             --enable-static \
-                             --enable-graphite
+../${PACKAGE_NAME}/configure --prefix=${INSTALL_DIR} \
+ -v --enable-languages=${GCC_ENABLE_LANGUAGES} ${EXTRA_CFG}
 
 if [ "${?}" != "0" ] ; then
   echo "Error: Configuration failed in $PWD!"
