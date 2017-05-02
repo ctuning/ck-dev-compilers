@@ -20,7 +20,7 @@ fi
 
 export PACKAGE_NAME=gcc-${PACKAGE_VERSION}
 export PACKAGE_FILE=${PACKAGE_NAME}.tar.bz2
-export PACKAGE_URL=ftp://gcc.gnu.org/pub/gcc/snapshots/${PACKAGE_VERSION}/${PACKAGE_FILE}
+export PACKAGE_URL=http://fr.mirror.babylon.network/gcc/releases/gcc-${PACKAGE_VERSION}/${PACKAGE_FILE}
 
 cd ${INSTALL_DIR}
 
