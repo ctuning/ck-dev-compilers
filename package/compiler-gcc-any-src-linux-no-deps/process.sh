@@ -18,6 +18,8 @@ if [ "${PARALLEL_BUILDS}" != "" ] ; then
   NP=${PARALLEL_BUILDS}
 fi
 
+export PACKAGE_VERSION=7.1.0
+
 export PACKAGE_NAME=gcc-${PACKAGE_VERSION}
 export PACKAGE_FILE=${PACKAGE_NAME}.tar.bz2
 export PACKAGE_URL=http://fr.mirror.babylon.network/gcc/releases/gcc-${PACKAGE_VERSION}/${PACKAGE_FILE}
@@ -60,6 +62,14 @@ if [ "${?}" != "0" ] ; then
  exit 1
 fi
 
+if [ "${GCC_COMPILE_CFLAGS}" != "" ] ; then
+ export CFLAGS="${GCC_COMPILE_CFLAGS}"
+fi
+
+if [ "${GCC_COMPILE_CXXFLAGS}" != "" ] ; then
+ export CXXFLAGS="${GCC_COMPILE_CXXFLAGS}"
+fi
+
 # GCC version
 GCC_VER=`gcc -dumpversion`
 
@@ -67,8 +77,7 @@ GCC_VER=`gcc -dumpversion`
 MACHINE=`gcc -dumpmachine`
 
 # Set special vars
-if ["$LD_LIBRARY_PATH" -eq ""]
-then
+if [ "$LD_LIBRARY_PATH" == "" ] ; then
  export LD_LIBRARY_PATH=/usr/lib/${MACHINE}:/usr/lib/gcc/${MACHINE}/${GCC_VER}
 else
  LD_LIBRARY_PATH1=${LD_LIBRARY_PATH}
@@ -78,8 +87,7 @@ else
  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH1:/usr/lib/${MACHINE}:/usr/lib/gcc/${MACHINE}/${GCC_VER}
 fi
 
-if ["$LIBRARY_PATH" -eq ""]
-then
+if ["$LIBRARY_PATH" == ""] ; then
  export LIBRARY_PATH=/usr/lib/${MACHINE}:/usr/lib/gcc/${MACHINE}/${GCC_VER}
 else
  LIBRARY_PATH1=${LIBRARY_PATH}
@@ -101,17 +109,27 @@ if [ "${GCC_ENABLE_LANGUAGES}" == "" ] ; then
   export GCC_ENABLE_LANGUAGES=c
 fi
 
-export CFLAGS="${GCC_COMPILE_CFLAGS}"
-
-MACHINE=$(uname -m)
+XMACHINE=$(uname -m)
 EXTRA_CFG=""
-if [ "${MACHINE}" == "aarch64" ] ; then
+if [ "${RPI3}" == "YES" ] || [ "${XMACHINE}" == "aarch64" ] ; then
  EXTRA_CFG="--with-cpu=cortex-a53 --with-fpu=neon-fp-armv8 --with-float=hard  --build=arm-linux-gnueabihf --host=arm-linux-gnueabihf --target=arm-linux-gnueabihf"
 fi
 
+if [ "${XMACHINE}" == "armv7l" ] || [ "${XMACHINE}" == "aarch64" ] ; then
+ export CFLAGS="$CFLAGS -I/usr/include/${MACHINE}"
+ export CXXFLAGS="$CXXFLAGS -I/usr/include/${MACHINE}"
+fi
+
+echo ""
+echo "* CFLAGS = $CFLAGS"
+echo "* CXXFLAGS = $CXXFLAGS"
+echo "* EXTRA_CFG = $EXTRA_CFG"
+echo ""
+
 cd ${INSTALL_OBJ_DIR}
+
 ../${PACKAGE_NAME}/configure --prefix=${INSTALL_DIR} \
- -v --enable-languages=${GCC_ENABLE_LANGUAGES} ${EXTRA_CFG}
+ -v --enable-languages=${GCC_ENABLE_LANGUAGES} ${EXTRA_CFG} ${EXTRA_CFG_GCC}
 
 if [ "${?}" != "0" ] ; then
   echo "Error: Configuration failed in $PWD!"
