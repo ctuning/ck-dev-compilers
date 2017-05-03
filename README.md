@@ -55,6 +55,11 @@ On x86(_64) you may need to install extra packages:
  $ sudo apt-get install  g++-multilib libc6-dev-i386
 ```
 
+On Raspberry Pi 3 you need to install it as following:
+```
+ $ ck install --env.PARALLEL_BUILDS=1 --env.GCC_COMPILE_CFLAGS=-O0 --env.GCC_COMPILE_CXXFLAGS=-O0 --env.EXTRA_CFG_GCC=--disable-bootstrap --env.RPI3=YES
+```
+
 If you have some errors when building GCC >=6.x compilers with older GCC 5.x compiler, while gcc-6 is also available,
 you can use the following command line to fix them:
 
