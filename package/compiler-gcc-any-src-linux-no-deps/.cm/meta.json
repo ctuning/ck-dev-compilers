@@ -1,12 +1,12 @@
 {
-  "ask_version":"yes",
+  "ask_version":"no",
   "customize": {
     "add_m32": "no",
     "bugfix1": "no",
     "extra_dir": "",
     "retarget": "no",
     "tool_prefix_configured": "yes",
-    "version": ""
+    "version": "7.1.0"
   },
   "deps": {
   },
