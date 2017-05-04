@@ -60,6 +60,11 @@ On Raspberry Pi 3 you need to install it as following:
  $ ck install --env.PARALLEL_BUILDS=1 --env.GCC_COMPILE_CFLAGS=-O0 --env.GCC_COMPILE_CXXFLAGS=-O0 --env.EXTRA_CFG_GCC=--disable-bootstrap --env.RPI3=YES
 ```
 
+Note that you may need to increase swap size on RPi3 before building GCC. 
+You can change "CONF_SWAPSIZE=100" in /etc/dphys-swapfile to "CONF_SWAPSIZE=1000".
+But don't forget to change it back after installation, 
+otherwise your SD card may die sooner.
+
 If you have some errors when building GCC >=6.x compilers with older GCC 5.x compiler, while gcc-6 is also available,
 you can use the following command line to fix them:
 
