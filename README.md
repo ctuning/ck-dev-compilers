@@ -57,7 +57,7 @@ On x86(_64) you may need to install extra packages:
 
 On Raspberry Pi 3 you need to install it as following:
 ```
- $ ck install --env.PARALLEL_BUILDS=1 --env.GCC_COMPILE_CFLAGS=-O0 --env.GCC_COMPILE_CXXFLAGS=-O0 --env.EXTRA_CFG_GCC=--disable-bootstrap --env.RPI3=YES
+ $ ck install package:compiler-gcc-any-src-linux-no-deps --env.PARALLEL_BUILDS=1 --env.GCC_COMPILE_CFLAGS=-O0 --env.GCC_COMPILE_CXXFLAGS=-O0 --env.EXTRA_CFG_GCC=--disable-bootstrap --env.RPI3=YES
 ```
 
 Note that you may need to increase swap size on RPi3 before building GCC. 
