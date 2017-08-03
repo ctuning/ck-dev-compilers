@@ -5,8 +5,7 @@
     "bugfix1": "no",
     "extra_dir": "",
     "retarget": "no",
-    "tool_prefix_configured": "yes",
-    "version": "7.1.0"
+    "tool_prefix_configured": "yes"
   },
   "deps": {
   },

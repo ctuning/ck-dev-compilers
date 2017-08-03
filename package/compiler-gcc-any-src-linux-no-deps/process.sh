@@ -18,7 +18,7 @@ if [ "${PARALLEL_BUILDS}" != "" ] ; then
   NP=${PARALLEL_BUILDS}
 fi
 
-export PACKAGE_VERSION=7.1.0
+#export PACKAGE_VERSION=7.1.0
 
 export PACKAGE_NAME=gcc-${PACKAGE_VERSION}
 export PACKAGE_FILE=${PACKAGE_NAME}.tar.bz2
