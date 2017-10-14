@@ -22,6 +22,9 @@
   "suggested_path": "gcc", 
   "tags": [
     "compiler", 
-    "gcc"
+    "gcc",
+    "v5.2.0",
+    "v5.2",
+    "v5"
   ]
 }

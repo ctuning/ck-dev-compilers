@@ -22,6 +22,9 @@
   "suggested_path": "llvm", 
   "tags": [
     "compiler", 
-    "llvm"
+    "llvm",
+    "v3.8.0",
+    "v3.8",
+    "v3"
   ]
 }
