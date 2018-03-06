@@ -1,4 +1,5 @@
-* 2018.03.06 - improving llvm building on Windows
+* 2018.03.06 - improved llvm building on Windows
+             - unified llvm build
 
 * 2016.12.08 - added gmp-6.1.1 (previous version doesn't compile on Raspbery Pi)
 
