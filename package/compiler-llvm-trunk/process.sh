@@ -30,7 +30,7 @@ echo "Configuring ..."
 mkdir $OBJ_DIR
 cd $OBJ_DIR
 
-cmake ../trunk/llvm
+cmake ../trunk/llvm -DLLVM_TARGETS_TO_BUILD=${CK_LLVM_CMAKE_TARGETS} ${CK_LLVM_CMAKE_FLAGS}
 if [ "$?" != "0" ]; then
  echo "Error: failed configuring ..."
  read -p "Press any key to continue!"
