@@ -2,7 +2,6 @@
   "check_exit_status": "yes", 
   "customize": {
     "add_to_ck_compiler_flags_obligatory": "", 
-    "add_target_on_win":"--target=$#arch#$-pc-windows-msvc",
     "extra_dir": "", 
     "retarget": "no", 
     "tool_prefix": "", 
@@ -17,7 +16,10 @@
       "tags": "tool,cmake"
     }
   }, 
-  "end_full_path_universal":"bin$#sep#$clang$#host_file_ext_exe2#$",
+  "end_full_path": {
+    "android": "obj$#sep#$Release$#sep#$bin$#sep#$clang.exe", 
+    "win": "obj\\Release\\bin\\clang.exe"
+  }, 
   "only_for_host_os_tags": [
     "windows"
   ], 

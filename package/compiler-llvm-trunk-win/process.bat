@@ -12,6 +12,10 @@ rem
 rem PACKAGE_DIR
 rem INSTALL_DIR
 
+rem Prepare targets
+
+exit /b 0
+
 echo.
 echo Getting LLVM trunk from SVN
 svn co http://llvm.org/svn/llvm-project/llvm/trunk %INSTALL_DIR%\trunk\llvm
@@ -48,8 +52,10 @@ mkdir %INSTALL_OBJ_DIR%
 
 cd /D %INSTALL_OBJ_DIR%
 
+
 rem cmake.exe -G "Visual Studio 12 2013" -DCMAKE_INSTALL_PREFIX=%INSTALL_DIR% -DLLVM_TARGETS_TO_BUILD=X86;ARM;NVPTX %INSTALL_DIR%\trunk\llvm
-cmake.exe -DCMAKE_INSTALL_PREFIX=%INSTALL_DIR% -DLLVM_TARGETS_TO_BUILD=X86;X86;ARM;NVPTX %INSTALL_DIR%\trunk\llvm
+rem cmake.exe -DCMAKE_INSTALL_PREFIX=%INSTALL_DIR% -DLLVM_TARGETS_TO_BUILD=X86;ARM;NVPTX %INSTALL_DIR%\trunk\llvm
+cmake.exe -DCMAKE_INSTALL_PREFIX=%INSTALL_DIR% -DLLVM_TARGETS_TO_BUILD=%CK_LLVM_CMAKE_TARGETS% %CK_LLVM_CMAKE_FLAGS% %INSTALL_DIR%\trunk\llvm
 
 if %errorlevel% neq 0 (
  echo.
@@ -66,6 +72,13 @@ rem  echo.
 rem  echo Failed installing package!
 rem  goto err
 rem )
+
+echo.
+echo Copying bin and lib files ...
+
+xcopy /s /e /y %INSTALL_DIR%\obj\Release\* %INSTALL_DIR%
+mkdir %INSTALL_DIR%\include
+xcopy /s /e /y %INSTALL_DIR%\trunk\llvm\include\* %INSTALL_DIR%\include
 
 exit /b 0
 

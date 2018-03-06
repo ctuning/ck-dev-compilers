@@ -1,3 +1,5 @@
+* 2018.03.06 - improving llvm building on Windows
+
 * 2016.12.08 - added gmp-6.1.1 (previous version doesn't compile on Raspbery Pi)
 
 * 2016.11.28 - added package to compile LLVM 3.9.0 from sources
