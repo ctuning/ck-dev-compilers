@@ -40,7 +40,7 @@ On x86(_64) you may need to install extra packages:
  $ sudo apt-get install  g++-multilib libc6-dev-i386
 ```
 
-On Raspberry Pi 3 you need to install it as following:
+On Raspberry Pi 3 you need to install it as follows:
 ```
  $ ck install package:compiler-gcc-any-src-linux-no-deps --env.PARALLEL_BUILDS=1 --env.GCC_COMPILE_CFLAGS=-O0 --env.GCC_COMPILE_CXXFLAGS=-O0 --env.EXTRA_CFG_GCC=--disable-bootstrap --env.RPI3=YES
 ```
@@ -62,7 +62,7 @@ It is also possible to rebuild various deps for GCC via CK (such as GMP, MPFR, P
  $ ck install package:compiler-gcc-any-src-linux
 ```
 
-It is possible to build LLVM 3.9.0 from sources simply as following:
+It is possible to build LLVM 3.9.0 from sources simply as follows:
 ```
 $ ck install package:compiler-llvm-3.9.0-src-linux
 ```
