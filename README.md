@@ -5,6 +5,10 @@
 [![DOI](https://zenodo.org/badge/57043806.svg)](https://zenodo.org/badge/latestdoi/57043806)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
+**All CK components can be found at [cKnowledge.io](https://cKnowledge.io) and in [one GitHub repository](https://github.com/ctuning/ai)!**
+
+*This project is hosted by the [cTuning foundation](https://cTuning.org).*
+
 This repository contains CK packages to build, test, benchmark and tune development versions of various compilers (LLVM, GCC, etc)
 across different platforms (Linux, MacOS, Windows).
 
@@ -15,7 +19,7 @@ Prerequisites
 Authors
 =======
 
-* [Grigori Fursin](http://fursin.net/research.html), cTuning foundation (France) / dividiti (UK)
+* [Grigori Fursin](https://fursin.net), cTuning foundation
 
 License
 =======
